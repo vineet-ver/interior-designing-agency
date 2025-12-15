@@ -6,9 +6,9 @@ import { MainLayout } from '@/components/layout/MainLayout';
 import { Container } from '@/components/ui/Container';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
-import { Card, CardContent } from '@/components/ui/Card';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { Mail, Phone, MapPin, Send, MessageSquare } from 'lucide-react';
+import { motion } from 'framer-motion';
+import AuroraBackground from '@/components/ui/AuroraBackground';
 
 export default function ContactPage() {
     const [loading, setLoading] = useState(false);
@@ -30,13 +30,8 @@ export default function ContactPage() {
         };
 
         try {
-            // In a real scenario, we would insert into Supabase here
-            // const { error } = await supabase.from('contacts').insert([data]);
-            // if (error) throw error;
-
             // Simulating API call
-            await new Promise(resolve => setTimeout(resolve, 1000));
-
+            await new Promise(resolve => setTimeout(resolve, 1500));
             console.log("Form Data Submitted:", data);
             setSuccess(true);
             (e.target as HTMLFormElement).reset();
@@ -50,94 +45,141 @@ export default function ContactPage() {
 
     return (
         <MainLayout>
-            <section className="bg-secondary-50 py-16">
-                <Container>
-                    <h1 className="text-4xl font-bold tracking-tight text-primary-900 sm:text-5xl mb-6">
-                        Contact Us
-                    </h1>
-                    <p className="text-xl text-secondary-600 max-w-2xl">
-                        {siteData.contact.formDescription}
-                    </p>
-                </Container>
-            </section>
+            <div className="relative min-h-screen pt-32 pb-20 overflow-hidden bg-obsidian-950">
+                {/* Background Elements */}
+                <div className="absolute top-0 left-0 w-full h-[600px] bg-gradient-to-b from-primary-900/10 to-transparent pointer-events-none"></div>
+                <div className="absolute top-20 right-[-10%] w-[500px] h-[500px] bg-metallic-gold/5 rounded-full blur-[100px] pointer-events-none"></div>
 
-            <section className="py-24">
-                <Container>
-                    <div className="grid gap-12 lg:grid-cols-2">
-                        {/* Contact Info */}
-                        <div className="space-y-8">
-                            <div className="flex items-start gap-4">
-                                <div className="p-3 bg-primary-100 rounded-lg text-primary-600">
-                                    <MapPin className="w-6 h-6" />
-                                </div>
-                                <div>
-                                    <h3 className="text-lg font-semibold text-primary-900 mb-1">Our Office</h3>
-                                    <p className="text-secondary-600">{siteData.general.address}</p>
+                <Container className="relative z-10">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        className="text-center mb-20"
+                    >
+                        <h1 className="font-display text-5xl md:text-7xl font-bold text-white mb-6">
+                            Let's <span className="text-metallic-gold">Collaborate.</span>
+                        </h1>
+                        <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                            {siteData.contact.formDescription} <br />
+                            Ready to upgrade your enterprise infrastructure?
+                        </p>
+                    </motion.div>
+
+                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+                        {/* Contact Info Side */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="space-y-8"
+                        >
+                            <div className="glass p-8 rounded-3xl border border-white/5 hover:border-metallic-gold/30 transition-all duration-300 group">
+                                <div className="flex items-start gap-6">
+                                    <div className="p-4 bg-white/5 rounded-2xl text-metallic-gold group-hover:bg-metallic-gold group-hover:text-obsidian-950 transition-colors">
+                                        <MapPin className="w-8 h-8" />
+                                    </div>
+                                    <div>
+                                        <h3 className="text-xl font-display font-bold text-white mb-2">Headquarters</h3>
+                                        <p className="text-gray-400 text-lg leading-relaxed">{siteData.general.address}</p>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div className="flex items-start gap-4">
-                                <div className="p-3 bg-primary-100 rounded-lg text-primary-600">
-                                    <Phone className="w-6 h-6" />
-                                </div>
-                                <div>
-                                    <h3 className="text-lg font-semibold text-primary-900 mb-1">Phone</h3>
-                                    <p className="text-secondary-600">{siteData.general.contactPhone}</p>
+                            <div className="glass p-8 rounded-3xl border border-white/5 hover:border-metallic-gold/30 transition-all duration-300 group">
+                                <div className="flex items-start gap-6">
+                                    <div className="p-4 bg-white/5 rounded-2xl text-metallic-gold group-hover:bg-metallic-gold group-hover:text-obsidian-950 transition-colors">
+                                        <Phone className="w-8 h-8" />
+                                    </div>
+                                    <div>
+                                        <h3 className="text-xl font-display font-bold text-white mb-2">Direct Line</h3>
+                                        <p className="text-gray-400 text-lg">{siteData.general.contactPhone}</p>
+                                        <p className="text-sm text-gray-500 mt-1">Mon-Fri, 9am - 6pm IST</p>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div className="flex items-start gap-4">
-                                <div className="p-3 bg-primary-100 rounded-lg text-primary-600">
-                                    <Mail className="w-6 h-6" />
-                                </div>
-                                <div>
-                                    <h3 className="text-lg font-semibold text-primary-900 mb-1">Email</h3>
-                                    <p className="text-secondary-600">{siteData.general.contactEmail}</p>
+                            <div className="glass p-8 rounded-3xl border border-white/5 hover:border-metallic-gold/30 transition-all duration-300 group">
+                                <div className="flex items-start gap-6">
+                                    <div className="p-4 bg-white/5 rounded-2xl text-metallic-gold group-hover:bg-metallic-gold group-hover:text-obsidian-950 transition-colors">
+                                        <Mail className="w-8 h-8" />
+                                    </div>
+                                    <div>
+                                        <h3 className="text-xl font-display font-bold text-white mb-2">Email Us</h3>
+                                        <p className="text-gray-400 text-lg">{siteData.general.contactEmail}</p>
+                                        <p className="text-sm text-gray-500 mt-1">24/7 Enterprise Support</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
 
-                        {/* Contact Form */}
-                        <Card>
-                            <CardContent className="pt-6">
+                        {/* Form Side */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.4 }}
+                        >
+                            <div className="relative isolate p-8 md:p-10 rounded-[32px] bg-gradient-to-b from-white/10 to-transparent border border-white/10 backdrop-blur-2xl">
+                                <h3 className="text-2xl font-display font-bold text-white mb-8 flex items-center gap-3">
+                                    <MessageSquare className="w-6 h-6 text-metallic-gold" />
+                                    Send a Request
+                                </h3>
+
                                 <form onSubmit={handleSubmit} className="space-y-6">
-                                    <div>
-                                        <label htmlFor="name" className="block text-sm font-medium text-secondary-700 mb-2">Full Name</label>
-                                        <Input id="name" name="name" required placeholder="John Doe" />
+                                    <div className="grid md:grid-cols-2 gap-6">
+                                        <div className="space-y-2">
+                                            <label htmlFor="name" className="text-sm font-medium text-gray-400 ml-1">Full Name</label>
+                                            <input
+                                                id="name" name="name" required
+                                                placeholder="John Doe"
+                                                className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-metallic-gold/50 focus:ring-1 focus:ring-metallic-gold/50 transition-all"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <label htmlFor="phone" className="text-sm font-medium text-gray-400 ml-1">Phone</label>
+                                            <input
+                                                id="phone" name="phone" type="tel"
+                                                placeholder="+91..."
+                                                className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-metallic-gold/50 focus:ring-1 focus:ring-metallic-gold/50 transition-all"
+                                            />
+                                        </div>
                                     </div>
-                                    <div>
-                                        <label htmlFor="email" className="block text-sm font-medium text-secondary-700 mb-2">Email Address</label>
-                                        <Input id="email" name="email" type="email" required placeholder="john@example.com" />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="phone" className="block text-sm font-medium text-secondary-700 mb-2">Phone Number</label>
-                                        <Input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="message" className="block text-sm font-medium text-secondary-700 mb-2">Message</label>
-                                        <textarea
-                                            id="message"
-                                            name="message"
-                                            required
-                                            rows={4}
-                                            className="w-full rounded-md border border-secondary-200 bg-transparent px-3 py-2 text-sm shadow-sm transition-colors placeholder:text-secondary-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-                                            placeholder="How can we help you?"
+
+                                    <div className="space-y-2">
+                                        <label htmlFor="email" className="text-sm font-medium text-gray-400 ml-1">Work Email</label>
+                                        <input
+                                            id="email" name="email" type="email" required
+                                            placeholder="john@company.com"
+                                            className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-metallic-gold/50 focus:ring-1 focus:ring-metallic-gold/50 transition-all"
                                         />
                                     </div>
 
-                                    {error && <p className="text-red-600 text-sm">{error}</p>}
-                                    {success && <p className="text-green-600 text-sm">Message sent successfully! We will get back to you soon.</p>}
+                                    <div className="space-y-2">
+                                        <label htmlFor="message" className="text-sm font-medium text-gray-400 ml-1">Project Details</label>
+                                        <textarea
+                                            id="message" name="message" required rows={4}
+                                            placeholder="Tell us about your requirements..."
+                                            className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-metallic-gold/50 focus:ring-1 focus:ring-metallic-gold/50 transition-all resize-none"
+                                        />
+                                    </div>
 
-                                    <Button type="submit" className="w-full" disabled={loading}>
-                                        {loading ? 'Sending...' : 'Send Message'}
-                                        {!loading && <Send className="ml-2 h-4 w-4" />}
+                                    {error && <p className="text-red-400 text-sm bg-red-900/20 p-3 rounded-lg border border-red-500/20">{error}</p>}
+                                    {success && <p className="text-emerald-400 text-sm bg-emerald-900/20 p-3 rounded-lg border border-emerald-500/20">Message sent successfully! We will initiate contact shortly.</p>}
+
+                                    <Button
+                                        type="submit"
+                                        disabled={loading}
+                                        className="w-full h-14 bg-white text-black font-bold text-lg rounded-xl hover:bg-metallic-gold hover:text-black hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+                                    >
+                                        {loading ? 'Processing...' : 'Submit Inquiry'}
+                                        {!loading && <Send className="ml-2 h-5 w-5" />}
                                     </Button>
                                 </form>
-                            </CardContent>
-                        </Card>
+                            </div>
+                        </motion.div>
                     </div>
                 </Container>
-            </section>
+            </div>
         </MainLayout>
     );
 }

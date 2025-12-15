@@ -8,7 +8,7 @@ export default function AboutPage() {
     return (
         <MainLayout>
             {/* Header */}
-            <section className="bg-secondary-50 py-16 md:py-24">
+            <section className="bg-secondary-50 py-16 md:py-24 text-obsidian-950">
                 <Container>
                     <h1 className="text-4xl font-bold tracking-tight text-primary-900 sm:text-5xl mb-6">
                         About Us
@@ -57,7 +57,7 @@ export default function AboutPage() {
             </section>
 
             {/* Company History / Context (Placeholder) */}
-            <section className="py-24 border-t border-secondary-100">
+            <section className="py-24 border-t border-secondary-100 bg-white text-obsidian-950">
                 <Container>
                     <div className="max-w-3xl">
                         <h2 className="text-3xl font-bold text-primary-900 mb-6">Our Journey</h2>

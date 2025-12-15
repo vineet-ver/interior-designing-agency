@@ -55,7 +55,7 @@ export default function CareersPage() {
 
     return (
         <MainLayout>
-            <section className="bg-secondary-50 py-16">
+            <section className="bg-secondary-50 py-16 text-obsidian-950">
                 <Container>
                     <h1 className="text-4xl font-bold tracking-tight text-primary-900 sm:text-5xl mb-6">
                         Careers at ITSS
@@ -66,7 +66,7 @@ export default function CareersPage() {
                 </Container>
             </section>
 
-            <section className="py-24">
+            <section className="py-24 bg-white text-obsidian-950">
                 <Container>
                     <div className="grid gap-12 lg:grid-cols-3">
                         {/* Job List */}
@@ -76,11 +76,11 @@ export default function CareersPage() {
                                 <div className="h-40 bg-secondary-100 rounded-xl animate-pulse"></div>
                             ) : (
                                 jobs.map((job) => (
-                                    <Card key={job.id} className="hover:border-primary-300 transition-colors cursor-pointer" onClick={() => setSelectedJob(job.id)}>
+                                    <Card key={job.id} className="hover:border-primary-300 transition-colors cursor-pointer bg-white border-secondary-200" onClick={() => setSelectedJob(job.id)}>
                                         <CardContent className="pt-6">
                                             <div className="flex justify-between items-start mb-4">
                                                 <div>
-                                                    <CardTitle className="mb-2 text-xl">{job.title}</CardTitle>
+                                                    <CardTitle className="mb-2 text-xl text-primary-900">{job.title}</CardTitle>
                                                     <div className="flex gap-4 text-sm text-secondary-500">
                                                         <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> {job.location}</span>
                                                         <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> {job.type}</span>
@@ -111,17 +111,17 @@ export default function CareersPage() {
                                             <form onSubmit={handleApply} className="space-y-4">
                                                 <div>
                                                     <label className="block text-sm font-medium text-secondary-700 mb-1">Full Name</label>
-                                                    <Input required placeholder="John Doe" />
+                                                    <Input required placeholder="John Doe" className="text-black border-gray-300" />
                                                 </div>
                                                 <div>
                                                     <label className="block text-sm font-medium text-secondary-700 mb-1">Email</label>
-                                                    <Input type="email" required placeholder="john@example.com" />
+                                                    <Input type="email" required placeholder="john@example.com" className="text-black border-gray-300" />
                                                 </div>
                                                 <div>
                                                     <label className="block text-sm font-medium text-secondary-700 mb-1">Resume (PDF)</label>
-                                                    <Input type="file" accept=".pdf,.doc,.docx" required className="py-2" />
+                                                    <Input type="file" accept=".pdf,.doc,.docx" required className="py-2 text-black border-gray-300" />
                                                 </div>
-                                                <Button type="submit" className="w-full">Submit Application</Button>
+                                                <Button type="submit" className="w-full bg-primary-600 text-white hover:bg-primary-700">Submit Application</Button>
                                             </form>
                                         ) : (
                                             <p className="text-secondary-600 text-sm">
