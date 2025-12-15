@@ -62,7 +62,7 @@ export function Navbar() {
                 <div className="hidden md:flex items-center gap-4">
                     <Link href="/contact">
                         <MagneticButton>
-                            <button className="px-5 py-2 text-sm font-medium text-obsidian-950 bg-white rounded-full hover:bg-metallic-gold transition-colors duration-300">
+                            <button className="px-5 py-2 text-sm font-medium text-black bg-white rounded-full hover:bg-metallic-gold transition-colors duration-300">
                                 Get Quote
                             </button>
                         </MagneticButton>

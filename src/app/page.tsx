@@ -68,7 +68,7 @@ export default function Home() {
             <motion.div variants={fadeInUp} className="flex flex-wrap gap-6">
               <Link href="/services">
                 <MagneticButton>
-                  <button className="group relative px-8 py-4 bg-white text-obsidian-950 rounded-full text-lg font-medium overflow-hidden transition-all hover:pr-12">
+                  <button className="group relative px-8 py-4 bg-white text-black rounded-full text-lg font-medium overflow-hidden transition-all hover:pr-12">
                     <span className="relative z-10">Our Services</span>
                     <span className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
                       <ArrowRight className="w-5 h-5" />
